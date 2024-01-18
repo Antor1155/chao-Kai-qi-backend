@@ -7,6 +7,7 @@ require("dotenv").config()
 const connectToMongo = require('./mongooseConnect');
 
 const Products = require("./SchemaDesign/products.js")
+const Brands = require("./SchemaDesign/Brands.js")
 // const { Resend } = require('resend');
 // const resend = new Resend(process.env.RESEND_KEY);
 
@@ -33,7 +34,7 @@ app.get("/", async (req, res) => {
 })
 
 app.get("/generateProducts", async (req, res) => {
-    
+
     try {
         connectToMongo()
 
@@ -45,11 +46,11 @@ app.get("/generateProducts", async (req, res) => {
 
         const productsArray = []
 
-        jsonData.forEach(productData =>{
+        jsonData.forEach(productData => {
             const product = {
                 productName: productData["Model"],
                 coverName: productData["Cover Name"],
-                brand:productData["Compnay"],
+                brand: productData["Compnay"],
                 description: "",
                 minimOrderQuantity: 10,
                 pricePerUnit: productData["Unit Price USD"],
@@ -96,9 +97,20 @@ app.get("/generateProducts", async (req, res) => {
 
             productsArray.push(product)
 
+            // adding brand and unique products to it 
+            Brands.findOneAndUpdate({ _id: product.brand },
+                { $addToSet: { products: product.productName } },
+                { upsert: true, new: true }
+            ).then(()=>{
+                console.log("brand added")
+            }).catch(error =>{
+                console.log(error)
+            })
+
+            // adding products to db 
             const newProductData = new Products(product)
             newProductData.save()
-                .then(()=>console.log("saved data: " + productsArray.length))
+                .then(() => console.log("saved data: " + productsArray.length))
                 .catch(error => console.log(error))
         })
 
@@ -107,7 +119,7 @@ app.get("/generateProducts", async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-    
+
 })
 
 // edit product 
