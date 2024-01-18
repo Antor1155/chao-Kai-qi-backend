@@ -21,14 +21,15 @@ app.use(cors())
 app.get("/", async (req, res) => {
     try {
         connectToMongo()
-        console.log("app getting get hit")
+        const products = await Products.find()
 
-        console.log("db response okay")
+        res.json(products)
+
 
     } catch (error) {
         console.log(error)
+        res.status(500).json("ERROR in getting the product for DB")
     }
-    res.json("connecting to api working perfect")
 })
 
 app.get("/generateProducts", async (req, res) => {
@@ -54,7 +55,7 @@ app.get("/generateProducts", async (req, res) => {
                 pricePerUnit: productData["Unit Price USD"],
                 productSize: productData["Product Size"],
                 productGrossWeight: productData["Product weight/g"],
-                imageArray: productData["Image Array"],
+                imageArray: productData["Image Array"].split(","),
 
                 mainImage: productData["Main Image url"],
 
