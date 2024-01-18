@@ -50,10 +50,10 @@ app.post("/formdata/:section", async (req, res) => {
 
 // this part for node.js 
 //delete this for firebase
-// const port = process.env.PORT || 5000;
-// app.listen(port, () => {
-//     console.log("server is runnign on port", port)
-// })
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log("server is runnign on port", port)
+})
 
 // this part is for firebase
-exports.app = functions.https.onRequest(app)
+// exports.app = functions.https.onRequest(app)
