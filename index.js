@@ -4,6 +4,7 @@ require("dotenv").config()
 
 const connectToMongo = require('./mongooseConnect');
 
+const Products = require("./SchemaDesign/products.js")
 // const { Resend } = require('resend');
 // const resend = new Resend(process.env.RESEND_KEY);
 
@@ -15,11 +16,22 @@ app.use(express.json())
 app.use(cors())
 
 
-app.get("/testing-sample", async (req, res) => {
-   connectToMongo()
+app.get("/", async (req, res) => {
+   
 
     try{
+        connectToMongo()
         console.log("app getting get hit")
+
+        const  newProduct = new Products({
+            name: "antor",
+            email: "hello@hello.com"
+        })
+
+        const dbRes = await newProduct.save()
+
+        console.log("db response okay", dbRes)
+
     }catch(error){
         console.log(error)
     }
