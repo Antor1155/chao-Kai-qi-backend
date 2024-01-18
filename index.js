@@ -1,3 +1,5 @@
+const XLSX = require("xlsx")
+
 const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
@@ -17,25 +19,94 @@ app.use(cors())
 
 
 app.get("/", async (req, res) => {
-   
-
-    try{
+    try {
         connectToMongo()
         console.log("app getting get hit")
 
-        const  newProduct = new Products({
-            name: "antor",
-            email: "hello@hello.com"
-        })
+        console.log("db response okay")
 
-        const dbRes = await newProduct.save()
-
-        console.log("db response okay", dbRes)
-
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
     res.json("connecting to api working perfect")
+})
+
+app.get("/generateProducts", async (req, res) => {
+    
+    try {
+        connectToMongo()
+
+        // read xl sheet and product database 
+        const workbook = XLSX.readFile('./ChaoKaiQiProducts.xlsx');
+        const sheetName = 'Snap rotate style'; // Specify the desired sheet name
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet)
+
+        const productsArray = []
+
+        jsonData.forEach(productData =>{
+            const product = {
+                productName: productData["Model"],
+                coverName: productData["Cover Name"],
+                brand:productData["Compnay"],
+                description: "",
+                minimOrderQuantity: 10,
+                pricePerUnit: productData["Unit Price USD"],
+                productSize: productData["Product Size"],
+                productGrossWeight: productData["Product weight/g"],
+                imageArray: productData["Image Array"],
+
+                mainImage: productData["Main Image url"],
+
+                colors: {
+                    black: {
+                        name: "Black",
+                        colorValue: "#393A3D",
+                        imgLink: "/ProductImages/snapRotationStyle/colors/black"
+                    },
+                    whiteIce: {
+                        name: "White Ice",
+                        colorValue: "#CCEAF9",
+                        imgLink: "/ProductImages/snapRotationStyle/colors/whiteIce"
+                    },
+                    deepGreen: {
+                        name: "Deep Green",
+                        colorValue: "#215142",
+                        imgLink: "/ProductImages/snapRotationStyle/colors/deepGreen"
+                    },
+                    babyPink: {
+                        name: "Baby Pink",
+                        colorValue: "#E1CDCE",
+                        imgLink: "/ProductImages/snapRotationStyle/colors/babyPink"
+                    },
+                    gray: {
+                        name: "Gray",
+                        colorValue: "#E5E3E6",
+                        imgLink: "/ProductImages/snapRotationStyle/colors/gray"
+                    },
+                    lavenderPurple: {
+                        name: "Lavender Purple",
+                        colorValue: "#6A6C9A",
+                        imgLink: "/ProductImages/snapRotationStyle/colors/lavanderPurple"
+                    },
+
+                },
+            }
+
+            productsArray.push(product)
+
+            const newProductData = new Products(product)
+            newProductData.save()
+                .then(()=>console.log("saved data: " + productsArray.length))
+                .catch(error => console.log(error))
+        })
+
+        res.send(productsArray)
+
+    } catch (error) {
+        console.log(error)
+    }
+    
 })
 
 // edit product 
@@ -46,16 +117,16 @@ app.post("/formdata/:section", async (req, res) => {
         const data = req.body;
 
         data["submitDate"] = new Date().toDateString()
-        
+
         res.status(200).json("received")
 
-        }catch(error){
-            console.log(error)
-        }
+    } catch (error) {
+        console.log(error)
+    }
 
-        res.json(data)
+    res.json(data)
 
-    
+
 
 })
 
