@@ -18,7 +18,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-
+// getting products from start index to start + end index 
 app.get("/all-products/:start/:end", async (req, res) => {
     const start = req.params?.start ?? 0
     const end = req.params?.end ?? 12 
@@ -33,6 +33,32 @@ app.get("/all-products/:start/:end", async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json("ERROR in getting the product for DB")
+    }
+})
+
+// getting x amount random products 
+app.get("/random-products/:amount", async(req, res)=>{
+    try{
+        const amount = parseInt(req.params?.amount)
+        connectToMongo()
+        const randomProducts = await Products.aggregate([{$sample:{size: amount}}])
+        res.json(randomProducts)
+    }catch(error){
+        console.log(error)
+    }
+})
+
+// getting exact produt with object id 
+app.get("/product/:id", async(req, res)=>{
+    try{
+        const id = req.params?.id
+        connectToMongo()
+        
+        const product = await Products.findById(id)
+
+        res.json(product)
+    }catch(error){
+        console.log(error)
     }
 })
 
