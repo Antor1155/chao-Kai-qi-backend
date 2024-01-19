@@ -19,10 +19,13 @@ app.use(express.json())
 app.use(cors())
 
 
-app.get("/", async (req, res) => {
+app.get("/all-products/:start/:end", async (req, res) => {
+    const start = req.params?.start ?? 0
+    const end = req.params?.end ?? 12 
+
     try {
         connectToMongo()
-        const products = await Products.find()
+        const products = await Products.find().skip(start).limit(end)
 
         res.json(products)
 
@@ -138,8 +141,6 @@ app.post("/formdata/:section", async (req, res) => {
     }
 
     res.json(data)
-
-
 
 })
 

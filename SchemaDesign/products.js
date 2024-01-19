@@ -39,13 +39,7 @@ const ProductSchema = new Schema({
       trim: true
     },
     colors: {
-      type: {
-        [String]: { // Dynamic key for color names
-          name: String,
-          colorValue: String,
-          imgLink: String
-        }
-      }
+      type: Object
     },
     createdAt: {
       type: Date,
