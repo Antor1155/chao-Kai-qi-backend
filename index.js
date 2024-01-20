@@ -21,7 +21,7 @@ app.use(cors())
 // getting products from start index to start + end index 
 app.get("/all-products/:start/:end", async (req, res) => {
     const start = req.params?.start ?? 0
-    const end = req.params?.end ?? 12 
+    const end = req.params?.end ?? 12
 
     try {
         connectToMongo()
@@ -37,28 +37,41 @@ app.get("/all-products/:start/:end", async (req, res) => {
 })
 
 // getting x amount random products 
-app.get("/random-products/:amount", async(req, res)=>{
-    try{
+app.get("/random-products/:amount", async (req, res) => {
+    try {
         const amount = parseInt(req.params?.amount)
         connectToMongo()
-        const randomProducts = await Products.aggregate([{$sample:{size: amount}}])
+        const randomProducts = await Products.aggregate([{ $sample: { size: amount } }])
         res.json(randomProducts)
-    }catch(error){
+    } catch (error) {
         console.log(error)
+        res.status(500).send("server error while getting the product")
     }
 })
 
 // getting exact produt with object id 
-app.get("/product/:id", async(req, res)=>{
-    try{
+app.get("/product/:id", async (req, res) => {
+    try {
         const id = req.params?.id
         connectToMongo()
-        
+
         const product = await Products.findById(id)
 
         res.json(product)
-    }catch(error){
+    } catch (error) {
         console.log(error)
+        res.status(500).send("server error while getting the product")
+    }
+})
+
+app.get("/brands", async (req, res) => {
+    try {
+        connectToMongo()
+        const brands = await Brands.find()
+        res.json(brands)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send("server error while getting the product")
     }
 })
 
@@ -130,9 +143,9 @@ app.get("/generateProducts", async (req, res) => {
             Brands.findOneAndUpdate({ _id: product.brand },
                 { $addToSet: { products: product.productName } },
                 { upsert: true, new: true }
-            ).then(()=>{
+            ).then(() => {
                 console.log("brand added")
-            }).catch(error =>{
+            }).catch(error => {
                 console.log(error)
             })
 
@@ -148,7 +161,22 @@ app.get("/generateProducts", async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+})
 
+// get selected model products only 
+app.post("/selected-products", async (req, res) => {
+    try {
+        const data = req.body.updatedSelection
+        console.log(data)
+
+
+        const products = await Products.find({ productName: { $in: data } })
+        res.json(products)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send("problem in server finding the data")
+    }
 })
 
 // edit product 
@@ -164,11 +192,11 @@ app.post("/formdata/:section", async (req, res) => {
 
     } catch (error) {
         console.log(error)
+        res.status(500).send("server error while getting the product")
     }
-
-    res.json(data)
-
 })
+
+
 
 
 // this part for node.js 
