@@ -167,10 +167,8 @@ app.get("/generateProducts", async (req, res) => {
 app.post("/selected-products", async (req, res) => {
     try {
         const data = req.body.updatedSelection
-        console.log(data)
-
-
         const products = await Products.find({ productName: { $in: data } })
+
         res.json(products)
 
     } catch (error) {

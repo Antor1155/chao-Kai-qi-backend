@@ -6,7 +6,6 @@ async function connectToMongo() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log("connected to mongoDB")
     } catch(error){
         console.log("Error connection to mongo atlas")
     }
