@@ -8,6 +8,7 @@ const connectToMongo = require('./mongooseConnect');
 
 const Products = require("./SchemaDesign/products.js")
 const Brands = require("./SchemaDesign/Brands.js")
+const Customer = require("./SchemaDesign/Customers.js")
 // const { Resend } = require('resend');
 // const resend = new Resend(process.env.RESEND_KEY);
 
@@ -64,6 +65,7 @@ app.get("/product/:id", async (req, res) => {
     }
 })
 
+// getting all brands and its model 
 app.get("/brands", async (req, res) => {
     try {
         connectToMongo()
@@ -75,6 +77,8 @@ app.get("/brands", async (req, res) => {
     }
 })
 
+
+// generating products form xl sheet 
 app.get("/generateProducts", async (req, res) => {
 
     try {
@@ -177,20 +181,30 @@ app.post("/selected-products", async (req, res) => {
     }
 })
 
-// edit product 
-app.post("/formdata/:section", async (req, res) => {
 
-    try {
-        const section = req.params.section
-        const data = req.body;
+app.post("/mail-and-orders/:option", async(req, res)=>{
+    const option = req.params.option
+    const {customerData} = req.body
+    try{
+        connectToMongo()
+        const newCustomer = new Customer(customerData)
+        newCustomer.save()
+        
+        if(option === "mail"){
 
-        data["submitDate"] = new Date().toDateString()
+            console.log(customerData)
 
-        res.status(200).json("received")
+        }else if(option==="order"){
+            const {customerData, order} = data
+            console.log("order and customerData")
+        }
 
-    } catch (error) {
+        
+        
+        res.send("collected successfully")
+    }catch(error){
         console.log(error)
-        res.status(500).send("server error while getting the product")
+        res.status(500).send("couldn't process the data")
     }
 })
 
