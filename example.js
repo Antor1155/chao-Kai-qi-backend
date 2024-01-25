@@ -78,3 +78,52 @@ const snapRotationStyle = {
 
     },
 }
+
+const snapClosureFullPackage = {
+    productName: productData["Model"],
+    coverName: productData["Cover Name"],
+    brand: productData["Compnay"],
+    description: "",
+    minimOrderQuantity: 10,
+    pricePerUnit: productData["Unit Price USD"],
+    productSize: productData["Product Size"],
+    productGrossWeight: productData["Product weight/g"],
+    imageArray: productData["Image Array"].split(","),
+
+    mainImage: productData["Main Image url"],
+
+    colors: {
+        black: {
+            name: "Black",
+            colorValue: "#393A3D",
+            imgLink: "/ProductImages/snapClosureFullPackage/colors/black"
+        },
+        whiteIce: {
+            name: "White Ice",
+            colorValue: "#CCEAF9",
+            imgLink: "/ProductImages/snapClosureFullPackage/colors/whiteIce"
+        },
+        deepGreen: {
+            name: "Deep Green",
+            colorValue: "#215142",
+            imgLink: "/ProductImages/snapClosureFullPackage/colors/deepGreen"
+        },
+        babyPink: {
+            name: "Baby Pink",
+            colorValue: "#E1CDCE",
+            imgLink: "/ProductImages/snapClosureFullPackage/colors/babyPink"
+        },
+        gray: {
+            name: "Gray",
+            colorValue: "#E5E3E6",
+            imgLink: "/ProductImages/snapClosureFullPackage/colors/gray"
+        },
+        lavenderPurple: {
+            name: "Lavender Purple",
+            colorValue: "#6A6C9A",
+            imgLink: "/ProductImages/snapClosureFullPackage/colors/lavanderPurple"
+        },
+
+    },
+}
+

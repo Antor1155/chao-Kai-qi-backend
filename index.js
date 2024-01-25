@@ -86,7 +86,8 @@ app.get("/generateProducts", async (req, res) => {
 
         // read xl sheet and product database 
         const workbook = XLSX.readFile('./ChaoKaiQiProducts.xlsx');
-        const sheetName = 'Snap rotate style'; // Specify the desired sheet name
+        // const sheetName = 'Snap rotate style'; // Specify the desired sheet name
+        const sheetName = 'Snap Closure Full Package'; // Specify the desired sheet name
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
 
@@ -110,32 +111,32 @@ app.get("/generateProducts", async (req, res) => {
                     black: {
                         name: "Black",
                         colorValue: "#393A3D",
-                        imgLink: "/ProductImages/snapRotationStyle/colors/black"
+                        imgLink: "/ProductImages/snapClosureFullPackage/colors/black"
                     },
                     whiteIce: {
                         name: "White Ice",
                         colorValue: "#CCEAF9",
-                        imgLink: "/ProductImages/snapRotationStyle/colors/whiteIce"
+                        imgLink: "/ProductImages/snapClosureFullPackage/colors/whiteIce"
                     },
                     deepGreen: {
                         name: "Deep Green",
                         colorValue: "#215142",
-                        imgLink: "/ProductImages/snapRotationStyle/colors/deepGreen"
+                        imgLink: "/ProductImages/snapClosureFullPackage/colors/deepGreen"
                     },
                     babyPink: {
                         name: "Baby Pink",
                         colorValue: "#E1CDCE",
-                        imgLink: "/ProductImages/snapRotationStyle/colors/babyPink"
+                        imgLink: "/ProductImages/snapClosureFullPackage/colors/babyPink"
                     },
                     gray: {
                         name: "Gray",
                         colorValue: "#E5E3E6",
-                        imgLink: "/ProductImages/snapRotationStyle/colors/gray"
+                        imgLink: "/ProductImages/snapClosureFullPackage/colors/gray"
                     },
                     lavenderPurple: {
                         name: "Lavender Purple",
                         colorValue: "#6A6C9A",
-                        imgLink: "/ProductImages/snapRotationStyle/colors/lavanderPurple"
+                        imgLink: "/ProductImages/snapClosureFullPackage/colors/lavanderPurple"
                     },
 
                 },
