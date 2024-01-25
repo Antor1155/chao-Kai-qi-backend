@@ -175,9 +175,6 @@ app.get("/search", async(req, res) =>{
 
         const regex = new RegExp(searchTerm, "i")
 
-        // console.log("searchTerm :", searchTerm)
-        // console.log("regex: ", regex)
-
         connectToMongo()
 
         const result = await Products.find({
@@ -194,6 +191,8 @@ app.get("/search", async(req, res) =>{
         res.status(500).send("server error in search product api")
     }
 })
+
+
 
 // get selected model products only 
 app.post("/selected-products", async (req, res) => {
