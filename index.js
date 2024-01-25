@@ -168,11 +168,38 @@ app.get("/generateProducts", async (req, res) => {
     }
 })
 
+// get searched products 
+app.get("/search", async(req, res) =>{
+    try{
+        const searchTerm = req.query.q 
+
+        const regex = new RegExp(searchTerm, "i")
+
+        // console.log("searchTerm :", searchTerm)
+        // console.log("regex: ", regex)
+
+        connectToMongo()
+
+        const result = await Products.find({
+            $or:[
+                {productName: {$regex: regex}},
+                {brand: {$regex: regex}},
+                {coverName: {$regex: regex}},
+            ]
+        }).limit(12)
+
+        res.send(result)
+    }catch(error){
+        console.log(error)
+        res.status(500).send("server error in search product api")
+    }
+})
+
 // get selected model products only 
 app.post("/selected-products", async (req, res) => {
     try {
         const data = req.body.updatedSelection
-        const products = await Products.find({ productName: { $in: data } })
+        const products = await Products.find({ productName: { $in: data } }).limit(36)
 
         res.json(products)
 
