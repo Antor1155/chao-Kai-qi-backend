@@ -183,7 +183,7 @@ app.get("/search", async(req, res) =>{
                 {brand: {$regex: regex}},
                 {coverName: {$regex: regex}},
             ]
-        }).limit(12)
+        }).limit(36)
 
         res.send(result)
     }catch(error){
