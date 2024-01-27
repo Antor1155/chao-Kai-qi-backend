@@ -127,3 +127,143 @@ const snapClosureFullPackage = {
     },
 }
 
+const Acrylic360DegreeRotatingP =         jsonData.forEach(productData => {
+    const col = {
+        black: "",
+        whiteIce: "",
+        deepGreen: "",
+        babyPink: "",
+        gray: "",
+        lavenderPurple: ""
+
+    }
+
+    switch (productData["Compnay"]) {
+        case "Apple":
+            col.black = "/ProductImages/Acrylic361DegreeRotatingP/colors/apple black"
+            col.whiteIce = "/ProductImages/Acrylic365DegreeRotatingP/colors/apple whiteIce"
+            col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/apple babyPink"
+            col.deepGreen = "/ProductImages/Acrylic362DegreeRotatingP/colors/apple deepGreen"
+            col.gray = "/ProductImages/Acrylic363DegreeRotatingP/colors/apple gray"
+            col.lavenderPurple = "/ProductImages/Acrylic364DegreeRotatingP/colors/apple lavanderPurple"
+            break;
+
+        case "HONOR":
+        case "Huawei":
+            col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (4)"
+            col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (6)"
+            col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (3)"
+            col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (5)"
+            col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (2)"
+            col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (1)"
+            break;
+
+
+        case "Lenovo":
+        case "Nokia":
+        case "OPPO":
+            col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (2)"
+            col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (4)"
+            col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (6)"
+            col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (5)"
+            col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (1)"
+            col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (3)"
+            break
+
+
+        case "Samsung":
+        case "Vivo":
+            col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (3)"
+            col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (2)"
+            col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (5)"
+            col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (4)"
+            col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (6)"
+            col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (1)"
+            break
+
+        case "Xiaomi":
+            col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (6)"
+            col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (3)"
+            col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (1)"
+            col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (2)"
+            col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (5)"
+            col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (4)"
+            break
+
+
+        default:
+            col.black = "/ProductImages/Acrylic361DegreeRotatingP/colors/apple black"
+            col.whiteIce = "/ProductImages/Acrylic365DegreeRotatingP/colors/apple whiteIce"
+            col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/apple babyPink"
+            col.deepGreen = "/ProductImages/Acrylic362DegreeRotatingP/colors/apple deepGreen"
+            col.gray = "/ProductImages/Acrylic363DegreeRotatingP/colors/apple gray"
+            col.lavenderPurple = "/ProductImages/Acrylic364DegreeRotatingP/colors/apple lavanderPurple"
+            break;
+    }
+
+    const product = {
+        productName: productData["Model"],
+        coverName: productData["Cover Name"],
+        brand: productData["Compnay"],
+        description: "",
+        minimOrderQuantity: 10,
+        pricePerUnit: productData["Unit Price USD"],
+        productSize: productData["Product Size"],
+        productGrossWeight: productData["Product weight/g"],
+        imageArray: productData["Image Array"].split(","),
+
+        mainImage: productData["Main Image url"],
+
+        colors: {
+            black: {
+                name: "Black",
+                colorValue: "#393A3D",
+                imgLink: col.black
+            },
+            whiteIce: {
+                name: "White Ice",
+                colorValue: "#CCEAF9",
+                imgLink: col.whiteIce
+            },
+            deepGreen: {
+                name: "Deep Green",
+                colorValue: "#215142",
+                imgLink: col.deepGreen
+            },
+            babyPink: {
+                name: "Baby Pink",
+                colorValue: "#E1CDCE",
+                imgLink: col.babyPink
+            },
+            gray: {
+                name: "Gray",
+                colorValue: "#E5E3E6",
+                imgLink: col.gray
+            },
+            lavenderPurple: {
+                name: "Lavender Purple",
+                colorValue: "#6A6C9A",
+                imgLink: col.lavenderPurple,
+            },
+
+        },
+    }
+
+    productsArray.push(product)
+
+    // adding brand and unique products to it 
+    // Brands.findOneAndUpdate({ _id: product.brand },
+    //     { $addToSet: { products: product.productName } },
+    //     { upsert: true, new: true }
+    // ).then(() => {
+    //     console.log("brand added")
+    // }).catch(error => {
+    //     console.log(error)
+    // })
+
+    // adding products to db 
+    // const newProductData = new Products(product)
+    // newProductData.save()
+    //     .then(() => console.log("saved data: " + productsArray.length))
+    //     .catch(error => console.log(error))
+})
