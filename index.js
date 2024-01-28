@@ -22,7 +22,7 @@ app.use(cors())
 // getting products from start index to start + end index 
 app.get("/all-products/:start/:end", async (req, res) => {
     const start = req.params?.start ?? 0
-    const end = req.params?.end ?? 12
+    const end = req.params?.end ?? 36
 
     try {
         connectToMongo()
