@@ -88,7 +88,8 @@ app.get("/generateProducts", async (req, res) => {
         const workbook = XLSX.readFile('./ChaoKaiQiProducts.xlsx');
         // const sheetName = 'Snap rotate style'; // Specify the desired sheet name
         // const sheetName = 'Snap Closure Full Package'; // Specify the desired sheet name
-        const sheetName = 'Acrylic 360-Degree Rotating P'; // Specify the desired sheet name
+        // const sheetName = 'Acrylic 360-Degree Rotating P'; // Specify the desired sheet name
+        const sheetName = 'Acrylic Two-in-One magnetic'; // Specify the desired sheet name
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
 
@@ -106,66 +107,24 @@ app.get("/generateProducts", async (req, res) => {
             }
 
             switch (productData["Compnay"]) {
-                case "Apple":
-                    col.black = "/ProductImages/Acrylic361DegreeRotatingP/colors/apple black"
-                    col.whiteIce = "/ProductImages/Acrylic365DegreeRotatingP/colors/apple whiteIce"
-                    col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/apple babyPink"
-                    col.deepGreen = "/ProductImages/Acrylic362DegreeRotatingP/colors/apple deepGreen"
-                    col.gray = "/ProductImages/Acrylic363DegreeRotatingP/colors/apple gray"
-                    col.lavenderPurple = "/ProductImages/Acrylic364DegreeRotatingP/colors/apple lavanderPurple"
-                    break;
-
-                case "HONOR":
-                case "Huawei":
-                    col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (4)"
-                    col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (6)"
-                    col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (3)"
-                    col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (5)"
-                    col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (2)"
-                    col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/huawei (1)"
-                    break;
-
-
-                case "Lenovo":
-                case "Nokia":
-                case "OPPO":
-                    col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (2)"
-                    col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (4)"
-                    col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (6)"
-                    col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (5)"
-                    col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (1)"
-                    col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/oppo (3)"
-                    break
-
-
                 case "Samsung":
-                case "Vivo":
-                    col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (3)"
-                    col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (2)"
-                    col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (5)"
-                    col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (4)"
-                    col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (6)"
-                    col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/samsung (1)"
-                    break
-
-                case "Xiaomi":
-                    col.black = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (6)"
-                    col.whiteIce = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (3)"
-                    col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (1)"
-                    col.deepGreen = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (2)"
-                    col.gray = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (5)"
-                    col.lavenderPurple = "/ProductImages/Acrylic360DegreeRotatingP/colors/xiaomi (4)"
-                    break
-
+                    col.black = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (1)"
+                    col.whiteIce = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (5)"
+                    col.babyPink = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (6)"
+                    col.deepGreen = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (2)"
+                    col.gray = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (3)"
+                    col.lavenderPurple = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (4)"
+                    break;
 
                 default:
-                    col.black = "/ProductImages/Acrylic361DegreeRotatingP/colors/apple black"
-                    col.whiteIce = "/ProductImages/Acrylic365DegreeRotatingP/colors/apple whiteIce"
-                    col.babyPink = "/ProductImages/Acrylic360DegreeRotatingP/colors/apple babyPink"
-                    col.deepGreen = "/ProductImages/Acrylic362DegreeRotatingP/colors/apple deepGreen"
-                    col.gray = "/ProductImages/Acrylic363DegreeRotatingP/colors/apple gray"
-                    col.lavenderPurple = "/ProductImages/Acrylic364DegreeRotatingP/colors/apple lavanderPurple"
+                    col.black = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (1)"
+                    col.whiteIce = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (2)"
+                    col.babyPink = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (3)"
+                    col.deepGreen = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (5)"
+                    col.gray = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (3)"
+                    col.lavenderPurple = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (1)"
                     break;
+
             }
 
             const product = {
@@ -248,7 +207,7 @@ app.delete('/delete', async (req, res) => {
     try {
         connectToMongo()
 
-        await Products.deleteMany({ coverName: /^Acrylic/ });
+        await Products.deleteMany({ coverName: "Acrylic (2.0A Board) Two-in-One Magnetic Detachable" });
         res.send('Documents deleted successfully.');
     } catch (error) {
         console.error(error);
