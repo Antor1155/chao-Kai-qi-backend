@@ -122,7 +122,7 @@ app.get("/generateProducts", async (req, res) => {
                     col.babyPink = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (3)"
                     col.deepGreen = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (5)"
                     col.gray = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (3)"
-                    col.lavenderPurple = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (1)"
+                    col.lavenderPurple = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (4)"
                     break;
 
             }
