@@ -674,5 +674,472 @@ const SkinLikeBackStickerSolidCo = jsonData.forEach(productData => {
         .catch(error => console.log(error))
 })
 
+const SnowflakePatternAntiDropTra = jsonData.forEach(productData => {
+    const col = {
+        black: "",
+        deepGreen: "",
+        babyPink: "",
+        // lavenderPurple: "",
+        whiteIce: "",
+        // gray: "",
+        navyBlue: "",
+        matchaGreen: "",
+        lightPurple: "",
+        red: "",
+
+    }
+
+    switch (productData["Compnay"]) {
+
+        default:
+            col.black = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (7)"
+            col.babyPink = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (8)"
+            col.deepGreen = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (5)"
+            col.whiteIce = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (1)"
+            col.navyBlue = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (6)"
+            col.red = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (4)"
+            col.matchaGreen = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (2)"
+            col.lightPurple = "/ProductImages/Snowflake Pattern Anti-drop Tra/colors/apple (3)"
+            break;
+
+    }
+
+    const product = {
+        productName: productData["Model"],
+        coverName: productData["Cover Name"],
+        brand: productData["Compnay"],
+        description: "",
+        minimOrderQuantity: 10,
+        pricePerUnit: productData["Unit Price USD"],
+        productSize: productData["Product Size"],
+        productGrossWeight: productData["Product weight/g"],
+        imageArray: productData["Image Array"].split(","),
+
+        mainImage: productData["Main Image url"],
+
+        colors: {
+            black: {
+                name: "Black",
+                colorValue: "#393A3D",
+                imgLink: col.black
+            },
+            deepGreen: {
+                name: "Deep Green",
+                colorValue: "#215142",
+                imgLink: col.deepGreen
+            },
+            babyPink: {
+                name: "Baby Pink",
+                colorValue: "#E1CDCE",
+                imgLink: col.babyPink
+            },
+            // lavenderPurple: {
+            //     name: "Lavender Purple",
+            //     colorValue: "#6A6C9A",
+            //     imgLink: col.lavenderPurple,
+            // },
+            whiteIce: {
+                name: "White Ice",
+                colorValue: "#CCEAF9",
+                imgLink: col.whiteIce
+            },
+            navyBlue: {
+                name: "Navy Blue",
+                colorValue: "#182F45",
+                imgLink: col.navyBlue,
+            },
+            red: {
+                name: "Red",
+                colorValue: "#D92727",
+                imgLink: col.red,
+            },
+            matchaGreen: {
+                name: "Matcha Green",
+                colorValue: "#8FF2B7",
+                imgLink: col.matchaGreen,
+            },
+            lightPurple: {
+                name: "Light Purple",
+                colorValue: "#D084FF",
+                imgLink: col.lightPurple,
+            },
+
+        },
+    }
+
+    productsArray.push(product)
+
+    // adding brand and unique products to it 
+    Brands.findOneAndUpdate({ _id: product.brand },
+        { $addToSet: { products: product.productName } },
+        { upsert: true, new: true }
+    ).then(() => {
+        console.log("brand added")
+    }).catch(error => {
+        console.log(error)
+    })
+
+    // adding products to db 
+    const newProductData = new Products(product)
+    newProductData.save()
+        .then((datax) => console.log("saved data: " + datax.length))
+        .catch(error => console.log(error))
+})
+
+const SolidColorTPUSideStickerWi = jsonData.forEach(productData => {
+    const col = {
+        black: "",
+        deepGreen: "",
+        babyPink: "",
+        lavenderPurple: "",
+        whiteIce: "",
+        // gray: "",
+        navyBlue: "",
+        matchaGreen: "",
+        // lightPurple: "",
+        // red: "",
+        roseGold: ""
+
+    }
+
+    switch (productData["Compnay"]) {
+
+        default:
+            col.black = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (2)"
+            col.babyPink = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (6)"
+            col.deepGreen = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (4)"
+            col.whiteIce = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (1)"
+            col.navyBlue = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (7)"
+            col.roseGold = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (8)"
+            col.matchaGreen = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (5)"
+            col.lavenderPurple = "/ProductImages/Solid Color TPU Side Sticker wi/colors/apple (3)"
+            break;
+
+    }
+
+    const product = {
+        productName: productData["Model"],
+        coverName: productData["Cover Name"],
+        brand: productData["Compnay"],
+        description: "",
+        minimOrderQuantity: 10,
+        pricePerUnit: productData["Unit Price USD"],
+        productSize: productData["Product Size"],
+        productGrossWeight: productData["Product weight/g"],
+        imageArray: productData["Image Array"].split(","),
+
+        mainImage: productData["Main Image url"],
+
+        colors: {
+            black: {
+                name: "Black",
+                colorValue: "#393A3D",
+                imgLink: col.black
+            },
+            deepGreen: {
+                name: "Deep Green",
+                colorValue: "#215142",
+                imgLink: col.deepGreen
+            },
+            babyPink: {
+                name: "Baby Pink",
+                colorValue: "#E1CDCE",
+                imgLink: col.babyPink
+            },
+            lavenderPurple: {
+                name: "Lavender Purple",
+                colorValue: "#6A6C9A",
+                imgLink: col.lavenderPurple,
+            },
+            whiteIce: {
+                name: "White Ice",
+                colorValue: "#CCEAF9",
+                imgLink: col.whiteIce
+            },
+            navyBlue: {
+                name: "Navy Blue",
+                colorValue: "#182F45",
+                imgLink: col.navyBlue,
+            },
+            // red: {
+            //     name: "Red",
+            //     colorValue: "#D92727",
+            //     imgLink: col.red,
+            // },
+            roseGold: {
+                name: "Rose Gold",
+                colorValue: "#D29393",
+                imgLink: col.roseGold,
+            },
+            matchaGreen: {
+                name: "Matcha Green",
+                colorValue: "#8FF2B7",
+                imgLink: col.matchaGreen,
+            },
+            // lightPurple: {
+            //     name: "Light Purple",
+            //     colorValue: "#D084FF",
+            //     imgLink: col.lightPurple,
+            // },
+
+        },
+    }
+
+    productsArray.push(product)
+
+    // adding brand and unique products to it 
+    Brands.findOneAndUpdate({ _id: product.brand },
+        { $addToSet: { products: product.productName } },
+        { upsert: true, new: true }
+    ).then(() => {
+        console.log("brand added")
+    }).catch(error => {
+        console.log(error)
+    })
+
+    // adding products to db 
+    const newProductData = new Products(product)
+    newProductData.save()
+        .then((datax) => console.log("saved data: " + datax.length))
+        .catch(error => console.log(error))
+}) 
+
+const SkinlikePCSideS = jsonData.forEach(productData => {
+    const col = {
+        black: "",
+        deepGreen: "",
+        babyPink: "",
+        lavenderPurple: "",
+        whiteIce: "",
+        // gray: "",
+        navyBlue: "",
+        matchaGreen: "",
+        // lightPurple: "",
+        // red: "",
+        roseGold: ""
+
+    }
+
+    switch (productData["Compnay"]) {
+
+        default:
+            col.black = "/ProductImages/Skin-like PC Side S/colors/apple (8)"
+            col.babyPink = "/ProductImages/Skin-like PC Side S/colors/apple (2)"
+            col.deepGreen = "/ProductImages/Skin-like PC Side S/colors/apple (5)"
+            col.whiteIce = "/ProductImages/Skin-like PC Side S/colors/apple (1)"
+            col.navyBlue = "/ProductImages/Skin-like PC Side S/colors/apple (7)"
+            col.roseGold = "/ProductImages/Skin-like PC Side S/colors/apple (6)"
+            col.matchaGreen = "/ProductImages/Skin-like PC Side S/colors/apple (4)"
+            col.lavenderPurple = "/ProductImages/Skin-like PC Side S/colors/apple (3)"
+            break;
+
+    }
+
+    const product = {
+        productName: productData["Model"],
+        coverName: productData["Cover Name"],
+        brand: productData["Compnay"],
+        description: "",
+        minimOrderQuantity: 10,
+        pricePerUnit: productData["Unit Price USD"],
+        productSize: productData["Product Size"],
+        productGrossWeight: productData["Product weight/g"],
+        imageArray: productData["Image Array"].split(","),
+
+        mainImage: productData["Main Image url"],
+
+        colors: {
+            black: {
+                name: "Black",
+                colorValue: "#393A3D",
+                imgLink: col.black
+            },
+            deepGreen: {
+                name: "Deep Green",
+                colorValue: "#215142",
+                imgLink: col.deepGreen
+            },
+            babyPink: {
+                name: "Baby Pink",
+                colorValue: "#E1CDCE",
+                imgLink: col.babyPink
+            },
+            lavenderPurple: {
+                name: "Lavender Purple",
+                colorValue: "#6A6C9A",
+                imgLink: col.lavenderPurple,
+            },
+            whiteIce: {
+                name: "White Ice",
+                colorValue: "#CCEAF9",
+                imgLink: col.whiteIce
+            },
+            navyBlue: {
+                name: "Navy Blue",
+                colorValue: "#182F45",
+                imgLink: col.navyBlue,
+            },
+            // red: {
+            //     name: "Red",
+            //     colorValue: "#D92727",
+            //     imgLink: col.red,
+            // },
+            roseGold: {
+                name: "Rose Gold",
+                colorValue: "#D29393",
+                imgLink: col.roseGold,
+            },
+            matchaGreen: {
+                name: "Matcha Green",
+                colorValue: "#8FF2B7",
+                imgLink: col.matchaGreen,
+            },
+            // lightPurple: {
+            //     name: "Light Purple",
+            //     colorValue: "#D084FF",
+            //     imgLink: col.lightPurple,
+            // },
+
+        },
+    }
+
+    productsArray.push(product)
+
+    // adding brand and unique products to it 
+    Brands.findOneAndUpdate({ _id: product.brand },
+        { $addToSet: { products: product.productName } },
+        { upsert: true, new: true }
+    ).then(() => {
+        console.log("brand added")
+    }).catch(error => {
+        console.log(error)
+    })
+
+    // adding products to db 
+    const newProductData = new Products(product)
+    newProductData.save()
+        .then((datax) => console.log("saved data: " + datax.length))
+        .catch(error => console.log(error))
+})
+
+const SkinLikeTransparentPenSlot = jsonData.forEach(productData => {
+    const col = {
+        black: "",
+        deepGreen: "",
+        babyPink: "",
+        lavenderPurple: "",
+        whiteIce: "",
+        // gray: "",
+        navyBlue: "",
+        matchaGreen: "",
+        lightPurple: "",
+        red: "",
+        // roseGold: ""
+
+    }
+
+    switch (productData["Compnay"]) {
+
+        default:
+            col.black = "/ProductImages/Skin-like transparent pen slot/colors/apple (9)"
+            col.babyPink = "/ProductImages/Skin-like transparent pen slot/colors/apple (1)"
+            col.deepGreen = "/ProductImages/Skin-like transparent pen slot/colors/apple (7)"
+            col.lavenderPurple = "/ProductImages/Skin-like transparent pen slot/colors/apple (3)"
+            col.lightPurple = "/ProductImages/Skin-like transparent pen slot/colors/apple (6)"
+            col.matchaGreen = "/ProductImages/Skin-like transparent pen slot/colors/apple (2)"
+            col.navyBlue = "/ProductImages/Skin-like transparent pen slot/colors/apple (8)"
+            col.red = "/ProductImages/Skin-like transparent pen slot/colors/apple (5)"
+            col.whiteIce = "/ProductImages/Skin-like transparent pen slot/colors/apple (4)"
+            break;
+
+    }
+
+    const product = {
+        productName: productData["Model"],
+        coverName: productData["Cover Name"],
+        brand: productData["Compnay"],
+        description: "",
+        minimOrderQuantity: 10,
+        pricePerUnit: productData["Unit Price USD"],
+        productSize: productData["Product Size"],
+        productGrossWeight: productData["Product weight/g"],
+        imageArray: productData["Image Array"].split(","),
+
+        mainImage: productData["Main Image url"],
+
+        colors: {
+            black: {
+                name: "Black",
+                colorValue: "#393A3D",
+                imgLink: col.black
+            },
+            deepGreen: {
+                name: "Deep Green",
+                colorValue: "#215142",
+                imgLink: col.deepGreen
+            },
+            babyPink: {
+                name: "Baby Pink",
+                colorValue: "#E1CDCE",
+                imgLink: col.babyPink
+            },
+            lavenderPurple: {
+                name: "Lavender Purple",
+                colorValue: "#6A6C9A",
+                imgLink: col.lavenderPurple,
+            },
+            whiteIce: {
+                name: "White Ice",
+                colorValue: "#CCEAF9",
+                imgLink: col.whiteIce
+            },
+            navyBlue: {
+                name: "Navy Blue",
+                colorValue: "#182F45",
+                imgLink: col.navyBlue,
+            },
+            red: {
+                name: "Red",
+                colorValue: "#D92727",
+                imgLink: col.red,
+            },
+            // roseGold: {
+            //     name: "Rose Gold",
+            //     colorValue: "#D29393",
+            //     imgLink: col.roseGold,
+            // },
+            matchaGreen: {
+                name: "Matcha Green",
+                colorValue: "#8FF2B7",
+                imgLink: col.matchaGreen,
+            },
+            lightPurple: {
+                name: "Light Purple",
+                colorValue: "#D084FF",
+                imgLink: col.lightPurple,
+            },
+
+        },
+    }
+
+    productsArray.push(product)
+
+    // adding brand and unique products to it 
+    Brands.findOneAndUpdate({ _id: product.brand },
+        { $addToSet: { products: product.productName } },
+        { upsert: true, new: true }
+    ).then(() => {
+        console.log("brand added")
+    }).catch(error => {
+        console.log(error)
+    })
+
+    // adding products to db 
+    const newProductData = new Products(product)
+    newProductData.save()
+        .then((datax) => console.log("saved data: " + datax.length))
+        .catch(error => console.log(error))
+})
+
 const PaintedBackStickerSolidColo = 2
 

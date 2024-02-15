@@ -92,7 +92,12 @@ app.get("/generateProducts", async (req, res) => {
         // const sheetName = 'Acrylic Two-in-One magnetic'; // Specify the desired sheet name
         // const sheetName = 'AcrylicTwo-in-OneIntegratedS'; // Specify the desired sheet name
         // const sheetName = 'Acrylic Two-in-One Y Fold Side'; // Specify the desired sheet name
-        const sheetName = 'Skin-like Back Sticker Solid Co'; // Specify the desired sheet name
+        // const sheetName = 'Skin-like Back Sticker Solid Co'; // Specify the desired sheet name
+        // const sheetName = 'Painted Back Sticker Solid Colo'; // Specify the desired sheet name
+        // const sheetName = 'Snowflake Pattern Anti-drop Tra'; // Specify the desired sheet name
+        // const sheetName = 'Solid Color TPU Side Sticker wi'; // Specify the desired sheet name
+        // const sheetName = 'Skin-like PC Side S'; // Specify the desired sheet name
+        const sheetName = 'Skin-like transparent pen slot'; // Specify the desired sheet name
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
 
@@ -104,26 +109,28 @@ app.get("/generateProducts", async (req, res) => {
                 deepGreen: "",
                 babyPink: "",
                 lavenderPurple: "",
-                // whiteIce: "",
+                whiteIce: "",
                 // gray: "",
                 navyBlue: "",
                 matchaGreen: "",
                 lightPurple: "",
                 red: "",
+                // roseGold: ""
 
             }
 
             switch (productData["Compnay"]) {
 
                 default:
-                    col.black = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (2)"
-                    col.babyPink = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (7)"
-                    col.deepGreen = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (5)"
-                    col.lavenderPurple = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (4)"
-                    col.navyBlue = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (6)"
-                    col.red = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (8)"
-                    col.matchaGreen = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (3)"
-                    col.lightPurple = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (1)"
+                    col.black = "/ProductImages/Skin-like transparent pen slot/colors/apple (9)"
+                    col.babyPink = "/ProductImages/Skin-like transparent pen slot/colors/apple (1)"
+                    col.deepGreen = "/ProductImages/Skin-like transparent pen slot/colors/apple (7)"
+                    col.lavenderPurple = "/ProductImages/Skin-like transparent pen slot/colors/apple (3)"
+                    col.lightPurple = "/ProductImages/Skin-like transparent pen slot/colors/apple (6)"
+                    col.matchaGreen = "/ProductImages/Skin-like transparent pen slot/colors/apple (2)"
+                    col.navyBlue = "/ProductImages/Skin-like transparent pen slot/colors/apple (8)"
+                    col.red = "/ProductImages/Skin-like transparent pen slot/colors/apple (5)"
+                    col.whiteIce = "/ProductImages/Skin-like transparent pen slot/colors/apple (4)"
                     break;
 
             }
@@ -162,6 +169,11 @@ app.get("/generateProducts", async (req, res) => {
                         colorValue: "#6A6C9A",
                         imgLink: col.lavenderPurple,
                     },
+                    whiteIce: {
+                        name: "White Ice",
+                        colorValue: "#CCEAF9",
+                        imgLink: col.whiteIce
+                    },
                     navyBlue: {
                         name: "Navy Blue",
                         colorValue: "#182F45",
@@ -172,6 +184,11 @@ app.get("/generateProducts", async (req, res) => {
                         colorValue: "#D92727",
                         imgLink: col.red,
                     },
+                    // roseGold: {
+                    //     name: "Rose Gold",
+                    //     colorValue: "#D29393",
+                    //     imgLink: col.roseGold,
+                    // },
                     matchaGreen: {
                         name: "Matcha Green",
                         colorValue: "#8FF2B7",
