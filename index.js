@@ -89,7 +89,10 @@ app.get("/generateProducts", async (req, res) => {
         // const sheetName = 'Snap rotate style'; // Specify the desired sheet name
         // const sheetName = 'Snap Closure Full Package'; // Specify the desired sheet name
         // const sheetName = 'Acrylic 360-Degree Rotating P'; // Specify the desired sheet name
-        const sheetName = 'Acrylic Two-in-One magnetic'; // Specify the desired sheet name
+        // const sheetName = 'Acrylic Two-in-One magnetic'; // Specify the desired sheet name
+        // const sheetName = 'AcrylicTwo-in-OneIntegratedS'; // Specify the desired sheet name
+        // const sheetName = 'Acrylic Two-in-One Y Fold Side'; // Specify the desired sheet name
+        const sheetName = 'Skin-like Back Sticker Solid Co'; // Specify the desired sheet name
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
 
@@ -98,31 +101,29 @@ app.get("/generateProducts", async (req, res) => {
         jsonData.forEach(productData => {
             const col = {
                 black: "",
-                whiteIce: "",
                 deepGreen: "",
                 babyPink: "",
-                gray: "",
-                lavenderPurple: ""
+                lavenderPurple: "",
+                // whiteIce: "",
+                // gray: "",
+                navyBlue: "",
+                matchaGreen: "",
+                lightPurple: "",
+                red: "",
 
             }
 
             switch (productData["Compnay"]) {
-                case "Samsung":
-                    col.black = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (1)"
-                    col.whiteIce = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (5)"
-                    col.babyPink = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (6)"
-                    col.deepGreen = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (2)"
-                    col.gray = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (3)"
-                    col.lavenderPurple = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (4)"
-                    break;
 
                 default:
-                    col.black = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (1)"
-                    col.whiteIce = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (2)"
-                    col.babyPink = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (3)"
-                    col.deepGreen = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (5)"
-                    col.gray = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/samsung (3)"
-                    col.lavenderPurple = "/ProductImages/AcrylicTwo-in-OneMagnetic/colors/apple (4)"
+                    col.black = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (2)"
+                    col.babyPink = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (7)"
+                    col.deepGreen = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (5)"
+                    col.lavenderPurple = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (4)"
+                    col.navyBlue = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (6)"
+                    col.red = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (8)"
+                    col.matchaGreen = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (3)"
+                    col.lightPurple = "/ProductImages/Skin-like Back Sticker Solid Co/colors/apple (1)"
                     break;
 
             }
@@ -146,11 +147,6 @@ app.get("/generateProducts", async (req, res) => {
                         colorValue: "#393A3D",
                         imgLink: col.black
                     },
-                    whiteIce: {
-                        name: "White Ice",
-                        colorValue: "#CCEAF9",
-                        imgLink: col.whiteIce
-                    },
                     deepGreen: {
                         name: "Deep Green",
                         colorValue: "#215142",
@@ -161,15 +157,30 @@ app.get("/generateProducts", async (req, res) => {
                         colorValue: "#E1CDCE",
                         imgLink: col.babyPink
                     },
-                    gray: {
-                        name: "Gray",
-                        colorValue: "#E5E3E6",
-                        imgLink: col.gray
-                    },
                     lavenderPurple: {
                         name: "Lavender Purple",
                         colorValue: "#6A6C9A",
                         imgLink: col.lavenderPurple,
+                    },
+                    navyBlue: {
+                        name: "Navy Blue",
+                        colorValue: "#182F45",
+                        imgLink: col.navyBlue,
+                    },
+                    red: {
+                        name: "Red",
+                        colorValue: "#D92727",
+                        imgLink: col.red,
+                    },
+                    matchaGreen: {
+                        name: "Matcha Green",
+                        colorValue: "#8FF2B7",
+                        imgLink: col.matchaGreen,
+                    },
+                    lightPurple: {
+                        name: "Light Purple",
+                        colorValue: "#D084FF",
+                        imgLink: col.lightPurple,
                     },
 
                 },
