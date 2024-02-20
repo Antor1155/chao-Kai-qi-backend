@@ -9,8 +9,8 @@ const connectToMongo = require('./mongooseConnect');
 const Products = require("./SchemaDesign/products.js")
 const Brands = require("./SchemaDesign/Brands.js")
 const Customer = require("./SchemaDesign/Customers.js")
-// const { Resend } = require('resend');
-// const resend = new Resend(process.env.RESEND_KEY);
+const { Resend } = require('resend');
+const resend = new Resend(process.env.RESEND_KEY);
 
 // for firebase-function upload only 
 // const functions = require('firebase-functions');
@@ -97,7 +97,7 @@ app.get("/generateProducts", async (req, res) => {
         // const sheetName = 'Snowflake Pattern Anti-drop Tra'; // Specify the desired sheet name
         // const sheetName = 'Solid Color TPU Side Sticker wi'; // Specify the desired sheet name
         // const sheetName = 'Skin-like PC Side S'; // Specify the desired sheet name
-        const sheetName = 'Skin-like transparent pen slot'; // Specify the desired sheet name
+        // const sheetName = 'Skin-like transparent pen slot'; // Specify the desired sheet name
         const worksheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
 

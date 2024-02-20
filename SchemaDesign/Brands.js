@@ -8,6 +8,6 @@ const BrandSchema = new Schema({
     }
 });
 
-const Brands = models?.Order || model("Brands", BrandSchema)
+const Brands = models?.Brands || model("Brands", BrandSchema)
 
 module.exports = Brands

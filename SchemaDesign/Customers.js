@@ -9,6 +9,6 @@ const CustomerSchema = new Schema({
     note:{type: String},
 });
 
-const Customer = models?.Order || model("Customers", CustomerSchema)
+const Customer = models?.Customer || model("Customers", CustomerSchema)
 
 module.exports = Customer

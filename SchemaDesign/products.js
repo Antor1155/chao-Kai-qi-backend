@@ -51,6 +51,6 @@ const ProductSchema = new Schema({
     }
   });
 
-const Products = models?.Order || model("Products", ProductSchema)
+const Products = models?.Products || model("Products", ProductSchema)
 
 module.exports = Products
