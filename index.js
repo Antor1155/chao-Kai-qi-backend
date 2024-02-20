@@ -32,7 +32,7 @@ app.get("/all-products/:start/:end", async (req, res) => {
 
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json("ERROR in getting the product for DB")
     }
 })
@@ -45,7 +45,7 @@ app.get("/random-products/:amount", async (req, res) => {
         const randomProducts = await Products.aggregate([{ $sample: { size: amount } }])
         res.json(randomProducts)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send("server error while getting the product")
     }
 })
@@ -60,7 +60,7 @@ app.get("/product/:id", async (req, res) => {
 
         res.json(product)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send("server error while getting the product")
     }
 })
@@ -72,7 +72,7 @@ app.get("/brands", async (req, res) => {
         const brands = await Brands.find()
         res.json(brands)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send("server error while getting the product")
     }
 })
@@ -210,22 +210,22 @@ app.get("/generateProducts", async (req, res) => {
                 { $addToSet: { products: product.productName } },
                 { upsert: true, new: true }
             ).then(() => {
-                console.log("brand added")
+                // console.log("brand added")
             }).catch(error => {
-                console.log(error)
+                // console.log(error)
             })
 
             // adding products to db 
             const newProductData = new Products(product)
             newProductData.save()
-                .then((datax) => console.log("saved data: " + datax.length))
-                .catch(error => console.log(error))
+                // .then((datax) => console.log("saved data: " + datax.length))
+                // .catch(error => console.log(error))
         })
 
         res.send(productsArray)
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 })
 
@@ -262,7 +262,7 @@ app.get("/search", async (req, res) => {
 
         res.send(result)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send("server error in search product api")
     }
 })
@@ -278,7 +278,7 @@ app.post("/selected-products", async (req, res) => {
         res.json(products)
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send("problem in server finding the data")
     }
 })
@@ -311,7 +311,7 @@ app.post("/mail-and-orders/:option", async (req, res) => {
 
         if (option === "order") {
             const { cart } = req.body
-            console.log(cart)
+            // console.log(cart)
 
             message += `<h3 style="font-weight: bold; text-decoration: underline;">Orders :</h3>`
 
@@ -339,14 +339,14 @@ app.post("/mail-and-orders/:option", async (req, res) => {
         })
 
         if (error) {
-            console.log(error)
+            // console.log(error)
         }
 
 
 
         res.send("collected successfully")
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).send("couldn't process the data")
     }
 })
@@ -358,7 +358,7 @@ app.post("/mail-and-orders/:option", async (req, res) => {
 //delete this for firebase
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-    console.log("server is runnign on port", port)
+    // console.log("server is runnign on port", port)
 })
 
 // this part is for firebase
