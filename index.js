@@ -292,13 +292,54 @@ app.post("/mail-and-orders/:option", async (req, res) => {
         const newCustomer = new Customer(customerData)
         newCustomer.save()
 
-        if (option === "mail") {
+        let heading = option === "mail" ? "New client" : "New Order"
 
-            console.log(customerData)
+        let message = `
+                    <h1>${heading}</h1>
 
-        } else if (option === "order") {
-            const { customerData, order } = data
-            console.log("order and customerData")
+                    <p>Name: ${customerData.name}</p>
+                    <p>Email: ${customerData.email}</p>
+                    <p>Phone: ${customerData.phone}</p>
+                    <p>Country: ${customerData.country}</p>
+                    <p>Organization: ${customerData.organization}</p>
+                    <br>
+
+                    <p style="text-decoration: underline">Note :</p>
+                    <p>${customerData.note}</p>
+                    <br>
+        `
+
+        if (option === "order") {
+            const { cart } = req.body
+            console.log(cart)
+
+            message += `<h3 style="font-weight: bold; text-decoration: underline;">Orders :</h3>`
+
+            cart.forEach(product => {
+                message += `
+                    <p>Model: ${product.productName}</p>
+                    <p>Brand: ${product.brand}</p>
+                    <p>Cover: ${product.coverName}</p>
+                    <p>Color: ${product.color.name} &nbsp;&nbsp;&nbsp;  color-value: ${product.color.colorValue}</p>
+                    <p>Order amount : ${product.orderAmount} units</p>
+                    <p>unit price : ${product.priceperUnit} USD</p>
+                    <p>Total price : ${product.totalPrice} USD</p>
+                    <hr>
+                `
+            })
+        }
+
+
+
+        const { data, error } = await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: "opu.chaokaiqi@gmail.com",
+            subject: "New Order",
+            html: message
+        })
+
+        if (error) {
+            console.log(error)
         }
 
 
