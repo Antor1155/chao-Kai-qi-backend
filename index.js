@@ -332,14 +332,14 @@ app.post("/mail-and-orders/:option", async (req, res) => {
 
 
         const { data, error } = await resend.emails.send({
-            from: "Acme <onboarding@resend.dev>",
-            to: "opu.chaokaiqi@gmail.com",
+            from: "ChaokaiqiWeb <webfunnel@chaokaiqi.com>",
+            to: ["opu.chaokaiqi@gmail.com","chaokaiqi@outlook.com"],
             subject: "New Order",
             html: message
         })
 
         if (error) {
-            // console.log(error)
+            console.log(error)
         }
 
 
