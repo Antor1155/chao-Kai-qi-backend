@@ -339,7 +339,7 @@ app.post("/mail-and-orders/:option", async (req, res) => {
         })
 
         if (error) {
-            console.log(error)
+            // console.log(error)
         }
 
 
