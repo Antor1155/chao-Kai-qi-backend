@@ -1,8 +1,13 @@
 const XLSX = require("xlsx")
-
 const express = require("express")
 const cors = require("cors")
+
+// this tow expeorts for vps server with https 
+const https = require("https")
+const fs = require("fs")
+
 require("dotenv").config()
+
 
 const connectToMongo = require('./mongooseConnect');
 
@@ -18,6 +23,16 @@ const resend = new Resend(process.env.RESEND_KEY);
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+
+// this file for vps server to get the ssl key 
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/www.chaokaiqi.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.chaokaiqi.com/fullchain.pem')
+};
+
+const server = https.createServer(options, app)
+//this middle part only active on vps server with https
 
 // getting products from start index to start + end index 
 app.get("/all-products/:start/:end", async (req, res) => {
@@ -357,9 +372,14 @@ app.post("/mail-and-orders/:option", async (req, res) => {
 // this part for node.js 
 //delete this for firebase
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    // console.log("server is runnign on port", port)
-})
+// app.listen(port, () => {
+//     // console.log("server is runnign on port", port)
+// })
 
 // this part is for firebase
 // exports.app = functions.https.onRequest(app)
+
+// this part for vps server with https:
+server.listen(port, ()=>{
+
+})
